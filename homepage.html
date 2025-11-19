@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Homepage</title>
+        <meta charset="utf-8"/>
+        <meta name="author" content="Yuni Lin"/>
+        <meta name="description" content="Homepage"/>
+        <meta name="Keywords" content="Final Project for CS 426"/>
+        <link href="homepage.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <header>
+            <div id="button_nav">
+                <button id="menuButton">
+                    <img src="images/menu_button.png" alt="menu button"/>
+                </button>
+            </div>
+            <nav id="navBar">
+                <ul>
+                    <li><a href="#">Homepage</a></li>
+                    <li><a href="#">Tools</a></li>
+                    <li><a href="#">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main id="main_section">
+            <img src="images/logo.png" alt="Logo"/>
+            <h1>Welcome, Frank C.Colins</h1>
+            <button id="openModalBtn">Log Emotion</button>
+            <div id="modalOverlay" class="modal-overlay">
+                <div class="modal" id="emotionModal">
+                <button class="modal-close" id="closeModalBtn">&times;</button>
+                <h2>Log Your Emotion</h2>
+                <form id="emotionForm">
+                    <div class="form-group">
+                        <label for="mood">Mood</label>
+                            <select id="mood" name="mood" required>
+                                <option value="">Select how you feel</option>
+                                <option value="calm">Calm 🙂</option>
+                                <option value="happy">Happy 😄</option>
+                                <option value="okay">Okay 😐</option>
+                                <option value="stressed">Stressed 😫</option>
+                                <option value="anxious">Anxious 😟</option>
+                            </select>
+                            </div>
+                                <div class="form-group">
+                                    <label for="stressLevel">Stress level (0–10)</label>
+                                    <input type="range" id="stressLevel" name="stressLevel" min="0" max="10" value="5" />
+                                <div class="range-value">Current: <span id="stressValue">5</span></div>
+                            </div>
+                            <div class="button-row">
+                                <button type="button" class="btn-cancel" id="cancelBtn">Cancel</button>
+                                <button type="submit" class="btn-submit">Save</button>
+                            </div>
+                    </div>
+                </form>  
+            </div>
+            <blockquote id="quote">
+                <p>
+                &#34;More smiling, less worrying. More compassion, less judgment. More blessed, less stressed.
+                More love, less hate.&#34; -----<em>Roy T. Bennett,</em> <u>The Light in the Heart</u>
+                </p>
+            </blockquote>
+        </main>
+        <main id="section_container">
+        <section class="overview">
+            <h2>Overview</h2>
+            <div class="chart-container">
+                <canvas id="stressChart"></canvas>
+            </div>
+        </section>
+        <section class="tools">
+            <h2>Tools</h2>
+            <ul>
+                <li><a>Breathing</a></li>
+                <li><a>Meditation</a></li>
+                <li><a>Journaling</a></li>
+            </ul>
+        </section>
+        <section class="profile">
+            <h3>Profile</h3>
+            <img src="images/pro_icon.png" alt="profile_icon" />
+            <p>Frank C. Colins</p>
+        </section>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="homepage.js"></script>
+    </body>
+</html>
