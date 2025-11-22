@@ -89,7 +89,7 @@ input {
     display: none;
 }
 /*Adjusted styling to the flex box for mobile view*/
-@media (max-width: 1050px) {
+@media (max-width: 600px) {
     .divider {
         display: none;
     }
@@ -107,3 +107,4 @@ input {
 
 
 }
+
