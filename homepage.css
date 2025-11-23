@@ -4,6 +4,7 @@
     font-family: myCustomerFont;
     src: url(Poppins/Poppins-Medium.ttf);
 }
+/* Body layout */
 body {
     margin: 0;
     display: flex;
@@ -12,7 +13,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
+/* Nav bar */
 header {
     background-color: #1d617a;
     color: white;
@@ -72,6 +73,8 @@ header {
     background-color: #cef2ef;
 }
 
+/* main section */
+
 #main_section {
     display: flex;            
     flex-direction: column;  
@@ -90,6 +93,7 @@ header {
     font-size: 55px;
 }
 
+/* Modal */
 #openModalBtn {
     font-family: 'mycustomerFont', Arial, Helvetica, sans-serif;
     padding: 10px 18px;
@@ -137,6 +141,8 @@ header {
     margin-bottom: 12px;
     font-size: 20px;
 }
+
+/* Form */
 
 .form-group label {
     display: block;
@@ -199,6 +205,7 @@ header {
     color: #1d617a;
 }
 
+/* Overview section */
 #section_container > section {
     flex: 1; 
     background-color: rgba(255, 255, 255, 0.47); 
@@ -225,6 +232,8 @@ header {
 .overview h2 {
     margin: 0 0 10px;
 }
+
+/* Tools section */
 
 #section_container .tools {
     height: 350px;
@@ -262,7 +271,8 @@ header {
   cursor: pointer;
 }
 
- 
+/* Profile section */
+
 #section_container .profile {
     height: 350px;
     font-weight: bold;
@@ -272,6 +282,7 @@ header {
     background: none;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
     body {
         font-size: 16px;
@@ -308,7 +319,6 @@ header {
     }
 }
 
-/* Phone */
 @media (max-width: 600px) {
     header {
         padding: 8px 12px;
