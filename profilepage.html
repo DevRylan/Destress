@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile Page</title>
+    <meta name="author" content="Chidera Chuka"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="profilepage.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <div id="button_nav">
+            <button id="menuButton">
+                <img src="menu icon.png" alt="menu button">
+            </button>
+        </div>
+
+        <!-- TOP RIGHT LOGO -->
+        <img id="headerLogo" src="LogoDestress.png" alt="logo">
+
+        <nav id="navBar">
+            <ul>
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#">Tools</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN PAGE WRAPPER -->
+    <main id="profile_layout">
+
+        <!-- LEFT PROFILE CARD -->
+        <section class="profile_card">
+            <h2>Your Profile</h2>
+
+            <!-- <img src="https://i.ibb.co/ZmFHZJx/default-user.png" alt="Profile Icon" class="profile-icon"> -->
+
+
+            <div class="profile_img">
+                <img src="profileicon.jpeg" alt="profileicon">
+            </div>
+
+            <p class="profile-name"><strong>Frank C. Colins</strong></p>
+            <p class="profile-age"><strong>Age:</strong> 38</p>
+            <p class="profile-gender"><strong>Gender:</strong> M</p>
+            <p class="profile-stress_levels"><strong>Average Stress Levels:</strong> 5/10</p>
+        </section>
+
+        <!-- RIGHT STRESS LEVELS CHART -->
+        <section class="chart_section">
+            <h2>Recent Stress Levels</h2>
+
+            <div class="chart-container">
+                <canvas id="stressChart" height="300"></canvas>
+            </div>
+        </section>
+
+        <!-- BOTTOM SETTINGS -->
+        <section class="settings_section">
+            <h2>Settings</h2>
+
+            <div class="setting_item">
+                <span>Mode</span>
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="setting_item">
+                <span>Notifications</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="setting_item">
+                <span>Report a problem</span>
+                </label>
+            </div>
+
+            <div class="setting_item">
+                <span>Terms and Conditions</span>
+                </label>
+            </div>
+
+            <div class="setting_item">
+                <span>Logout</span>
+                </label>
+            </div>
+
+            
+            <div class="setting_item">
+                <span>DELETE ACCOUNT</span>
+                </label>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="profilepage.js"></script>
+
+</body>
+</html>
