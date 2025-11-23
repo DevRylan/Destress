@@ -1,0 +1,249 @@
+@charset "utf-8";
+
+/* Import same group font */
+@font-face {
+    font-family: myCustomerFont;
+    src: url(Poppins/Poppins-Medium.ttf);
+}
+
+body {
+    margin: 0;
+    background-color: #cef2ef;
+    font-family: 'myCustomerFont', Arial, Helvetica, sans-serif;
+}
+
+/* ---------- HEADER (same as homepage) ---------- */
+header {
+    background-color: #1d617a;
+    color: white;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#button_nav img {
+    width: 30px;
+    height: 30px;
+}
+
+#button_nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Logo top right */
+#headerLogo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+#navBar {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 200px;
+}
+
+#navBar.show {
+    display: block;
+}
+
+#navBar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navBar li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #1d617a;
+    border-bottom: 1px solid #1d617a;
+}
+
+/* ---------- PAGE LAYOUT ---------- */
+#profile_layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 30px;
+    color: #1d617a;
+}
+
+/* Shared box style */
+#profile_layout section {
+    background-color: rgba(255, 255, 255, 0.47);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ---------- PROFILE CARD ---------- */
+.profile_card {
+    width: 330px;
+}
+
+/* .profile_img {
+    width: 70px;
+    height: 70px;
+    background-color: #1d617a;
+    border-radius: 8px;
+    margin: 0 auto 20px;
+    object-fit: contain;
+} */
+.profile_img {
+    width: 120px;          
+    height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;    
+    overflow: hidden;      
+    background-color: #1d617a; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      
+}
+
+
+.profile-name{
+    margin-top: 50px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.profile-age, .profile-gender, .profile-stress_levels{
+    font-size: 1.3rem;
+}
+
+.profile-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* makes it circular */
+    object-fit: cover;  /* ensures the pic stays centered */
+    display: block;
+    margin: 0 auto 15px; /* centers it + adds space under */
+}
+
+
+
+
+/* ---------- CHART ---------- */
+.chart_section {
+    width: 500px;
+    max-width: 100%;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.47);
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+canvas {
+    width: 100%;
+    height: 100% ;
+}
+
+
+/* ---------- SETTINGS ---------- */
+.settings_section {
+    width: 80%;
+    max-width: 600px;
+}
+
+.setting_item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 18px 0;
+    font-size: 18px;
+}
+
+/* Toggle switch styling */
+.switch {
+    position: relative;
+    width: 45px;
+    height: 24px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    background-color: #ccc;
+    border-radius: 24px;
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slider:before {
+    content: "";
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background-color: #1d617a;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    #profile_layout {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 8px 12px;
+    }
+
+    #headerLogo {
+        width: 32px;
+        height: 32px;
+    }
+
+    .profile_img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .chart-container {
+        height: 240px;
+    }
+
+    .setting_item {
+        font-size: 16px;
+    }
+}
