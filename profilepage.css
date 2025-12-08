@@ -44,16 +44,15 @@ header {
 }
 
 #navBar {
-    display: none;
     position: absolute;
     top: 100%;
     left: 0;
     background-color: white;
     width: 200px;
-}
-
-#navBar.show {
-    display: block;
+    border:1px solid;
+    border-radius: 6px;
+    padding: 10px;
+    z-index:9999;
 }
 
 #navBar ul {
@@ -68,6 +67,10 @@ header {
     text-decoration: none;
     color: #1d617a;
     border-bottom: 1px solid #1d617a;
+}
+
+.hidden{
+    display: none;
 }
 
 /* ---------- PAGE LAYOUT ---------- */
@@ -133,10 +136,10 @@ header {
 .profile-icon {
     width: 120px;
     height: 120px;
-    border-radius: 50%; /* makes it circular */
-    object-fit: cover;  /* ensures the pic stays centered */
+    border-radius: 50%; 
+    object-fit: cover;  
     display: block;
-    margin: 0 auto 15px; /* centers it + adds space under */
+    margin: 0 auto 15px; 
 }
 
 

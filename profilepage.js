@@ -1,4 +1,4 @@
-// PROFILE PAGE STRESS CHART
+// Stress chart
 document.addEventListener("DOMContentLoaded", function () {
 
     const ctx = document.getElementById('stressChart').getContext('2d');
@@ -28,6 +28,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             }
+        }
+    });
+
+     //Dropdown nav bar 
+    const button=document.getElementById("menuButton")
+    const menu=document.getElementById("navBar");
+
+    button.addEventListener("click", (e) => {
+        e.stopPropagation();
+        menu.classList.toggle("hidden");
+    });
+
+    menu.addEventListener("click", (e) => {
+        e.stopPropagation();
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!button.contains(e.target) && !menu.contains(e.target)) {
+            menu.classList.add("hidden");
         }
     });
 
