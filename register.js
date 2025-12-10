@@ -1,18 +1,19 @@
 //gets the loggin form and waits for submission
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
 
+document.getElementById("registerForm").addEventListener("submit", async function(e) {
+    
     e.preventDefault();
+
     //Gets the forM data and error box
     const formData = new FormData(this);
     const errorBox = document.getElementById("errorBox");
 
     //creates the styling for the error box
     errorBox.style.display = "none";
-    errorBox.style.color = "red";
     errorBox.textContent = "";
 
     //structure of the fetch for the login
-    const theResponse = await fetch("login.php", {
+    const theResponse = await fetch("register.php", {
         method: "POST",
         body: formData
     });
@@ -26,11 +27,10 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         errorBox.style.display = "block";
     } else {
         errorBox.style.color = "green";
-        errorBox.textContent = "Login successful! Redirecting...";
-        errorBox.style.display = "block";
-        //delays the redirect then sends  user to homepage
+        errorBox.textContent = "Account created! Redirecting...";
+        //delays the redirect then sends  user to loginpage
         setTimeout(() => {
-            window.location.href = "homepage.php?username="+encodeURIComponent(theResult.username);
-        }, 167);
+            window.location.href = "login.html";
+        }, 1067);
     }
 });
