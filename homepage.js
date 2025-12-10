@@ -27,6 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  /* read URL query parameters*/
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get('username');
+
+  if(username){
+    document.getElementById('userName').textContent = username;
+  }
 
   /*Modal Functions*/
   function openModal() {
