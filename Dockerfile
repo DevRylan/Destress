@@ -1,10 +1,10 @@
 FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
-  libsqlite3-dev \
+    libsqlite3-dev \
     pkg-config \
     && docker-php-ext-install pdo pdo_sqlite
 
 COPY . /var/www/html/
-RUN cp /var/www/html/destress.db /tmp/destress.db || true
 
+CMD cp /var/www/html/destress.db /tmp/destress.db && apache2-foreground
