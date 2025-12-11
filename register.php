@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     try {
         //connects to db
-        $db = new PDO("sqlite:destress.db");
+        $db = new PDO("sqlite:/tmp/destress.db");
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
         //inserts the userr into the db
@@ -60,3 +60,4 @@ exit;
 ?>
 <?php
 ?>
+
