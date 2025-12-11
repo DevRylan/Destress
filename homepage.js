@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const stressRange = document.getElementById('stressLevel');
   const stressValueDisplay = document.getElementById('stressValue');
 
+  // Store chart data from the server
+  let stressHistory = [];
 
   /*Navigation Menu*/
   menuButton.addEventListener('click', () => {
@@ -27,6 +29,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  /* read username from URL query*/
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get('username');
+
+  if(username){
+    document.getElementById('userName').textContent = username;
+  }
 
   /*Modal Functions*/
   function openModal() {
@@ -58,38 +67,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /*Form Submit*/
-  emotionForm.addEventListener('submit', function (event) {
-    event.preventDefault();
+  if(emotionForm){
+    emotionForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
 
-    const mood = document.getElementById('mood').value;
-    const stressLevel = document.getElementById('stressLevel').value;
-    const notes = document.getElementById('notes')?.value;
+      const stressLevel = stressRange ? stressRange.value : null;
+      
+      try {
+        const response = await fetch('homepage.php?action=save_stress', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ 
+            stress_level: stressLevel 
+          })
+        });
 
-    console.log('Mood log:', {
-      mood,
-      stressLevel,
-      notes,
-      time: new Date().toISOString()
+        const result = await response.json();
+        
+        console.log('Save response:', result);
+
+        if(result.status === "ok"){
+          alert('Emotion logged successfully');
+          closeModal();
+          emotionForm.reset();
+
+          //reset stress level display
+          if(stressRange && stressValueDisplay){
+            stressRange.value = 5;
+            stressValueDisplay.textContent = '5';
+          }
+
+          location.reload();
+
+        } else {
+          alert('Failed to save stress level. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error saving stress level:', error);
+        alert('Please try again.');
+      }
     });
+  }
 
-    alert('Emotion logged successfully');
-    closeModal();
-    emotionForm.reset();
-    stressRange.value = 5;
-    stressValueDisplay.textContent = '5';
-  });
 
 
   /*Chart.js*/
-  const ctx = document.getElementById('stressChart').getContext('2d');
+function renderStressChart(){
+    const canvas = document.getElementById('stressChart');
+    if (!canvas) {
+      return;
+    }
+    const ctx = canvas.getContext('2d');
 
-  const stressChart = new Chart(ctx, {
+  if(!Array.isArray(stressHistory) || stressHistory.length === 0){
+    console.log('No stress history data to render chart.');
+    return;
+  }
+
+  const labels = stressHistory.map(row => row.recorded_at);
+  const dataValues = stressHistory.map(row => Number(row.stress_level));
+
+  new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'],
+      labels: labels,
       datasets: [{
         label: 'Stress level',
-        data: [2, 4, 5, 4, 8, 6, 2],
+        data: dataValues,
         borderWidth: 1,
         borderRadius: 6
       }]
@@ -115,5 +161,30 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+}
+
+  fetch('homepage.php?action=get_stress_history')
+    .then(response => response.json())
+    .then(data => {
+      console.log('Chart date:', data);
+      
+      //if no data history, show message to log a stress level
+      if((!Array.isArray(data) || data.length === 0)){
+        const container = document.querySelector('.chart-container');
+        if(container){
+          container.innerHTML = '<p>No stress history yet, please log your first entry.</p>';
+        }
+        return;
+      }
+      
+      //store fetched data and render chart
+      stressHistory = data;
+      renderStressChart();
+    })
+    
+    .catch(error => {
+      console.error('Error fetching stress history:', error);
+      alert('Error loading stress history chart data.');
+    });
 
 });

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Admin Login Page</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body style="font-family: 'Poppins'">
+    <!--my navbar-->
+<nav class="navigationbar" style="display: flex; align-items: center; justify-content: center;">
+    <img src="images/LogoDestress.png" alt="Destress logo" style="width: 60px;">
+</nav>
+
+<div class="container">
+    <!--logo-->
+    <div class="leftSection">
+        <img src="images/LogoDestress.png" alt="Destress logo" class="logo divider">
+    </div>
+
+    <div style="background-color: rgb(0, 0, 0, .8);" class="divider"></div>
+
+    <div class="rightSection">
+        <form id="loginForm" class="loginForm">
+
+            <h2 style="margin-bottom: 19px;
+            font-weight: 480;
+            border-bottom: 1px solid black;
+            padding-bottom: 8px;">Admin Login</h2>
+
+            <div id="errorBox" style="color:red; margin-bottom:10px; display:none;"></div>
+
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Username" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password" required required>
+
+            <button type="submit" class="signinButton">Sign in</button>
+
+            <!--link to the login page-->
+            <p class="signupText">Not an admin?
+                <a href="login.html">Sign in</a>
+            </p>
+
+        </form>
+    </div>
+</div>
+
+<script src="adminLogin.js"></script>
+</body>
+</html>
