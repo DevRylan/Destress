@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         //connects to the db
-        $db = new PDO("sqlite:destress.db");
+        $db = new PDO("sqlite:/tmp/destress.db");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //creates a stored variable for the statements and finds user
@@ -58,3 +58,4 @@ echo json_encode([
 
 exit();
 ?>
+
