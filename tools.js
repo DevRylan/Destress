@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
    fetch('tools.php');
+  const menuButton = document.getElementById('menuButton');
+  const navBar = document.getElementById('navBar');
 
     document.querySelectorAll('.tool-card').forEach(card => {
         card.addEventListener('click', function(e) {
             e.preventDefault();  
+   
+   menuButton.addEventListener('click', () => {
+    navBar.classList.toggle('show');        
 
             const tool = this.getAttribute('data-tool');
             const videos = {
@@ -40,3 +45,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
