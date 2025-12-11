@@ -6,3 +6,5 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install pdo pdo_sqlite
 
 COPY . /var/www/html/
+RUN cp /var/www/html/destress.db /tmp/destress.db || true
+
