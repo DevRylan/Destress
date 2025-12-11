@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
 
       if(username){
-        window.location.href = `profile.html?username=${encodeURIComponent(username)}`
+        window.location.href = `profilepage.html?username=${encodeURIComponent(username)}`
       } else {
         alert('Username not found.');
       }
