@@ -16,8 +16,8 @@ try {
     $action = $_GET['action'] ?? 'default';
 
     if ($action === 'log_visit') {
-        $stmt = $db->prepare("INSERT INTO stress_reports (user_id, stress_level, notes, created_at) 
-                              VALUES (?, ?, ?, datetime('now'))");
+        $stmt = $db->prepare("INSERT INTO stressLevels(userid, stressLevel) 
+                              VALUES (?, ?);
         $stmt->execute([$userId, 3, 'User visited Stress Management Tools page']);
 
         echo json_encode([
@@ -39,14 +39,14 @@ try {
         ]);
 
     } else {
-    
         echo json_encode([
             "status" => "success",
             "message" => "Tools endpoint ready"
         ]);
     }
 
-} catch (Exception $e) {
+} 
+catch (Exception $e) {
     http_response_code(500);
     echo json_encode([
         "status" => "error",
