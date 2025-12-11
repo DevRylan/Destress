@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     try {
         //connects to db
-        $db = new PDO("sqlite:destress.db");
+        $db = new PDO("sqlite:/tmp/destress.db");
         $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
         //inserts the userr into the db
@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         echo json_encode([//sends error message
             "status"=>"error",
-            "message"=>"pls try again"
+            "message"=>$er
         ]);
         exit;
     }
@@ -60,3 +60,5 @@ exit;
 ?>
 <?php
 ?>
+
+

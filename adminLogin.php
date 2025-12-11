@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         //makes connection
-        $conn = new PDO("sqlite:destress.db");
+        $conn = new PDO("sqlite:/tmp/destress.db");
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //Prepared database query to retrieve the admin username and password info
@@ -56,3 +56,4 @@ echo json_encode([
 ]);
 exit;
 ?>
+

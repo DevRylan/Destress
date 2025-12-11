@@ -7,7 +7,7 @@ if (!isset($_SESSION["adminId"])) {
     exit;
 }
 
-$conn = new PDO("sqlite:destress.db");
+$conn = new PDO("sqlite:/tmp/destress.db");
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $q = $conn->query("SELECT userId, username, email, created_at FROM Users");
@@ -20,3 +20,4 @@ echo json_encode([
 ]);
 exit;
 ?>
+
