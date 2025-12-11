@@ -33,7 +33,7 @@ try {
             $stressLevel = $data['stress_level'] ?? null;
 
             //Validate the stress level and must be numeri and not null, and between 0 - 10
-            if ($stressLevel === null || !is_numeric($stressLevel || $stressLevel <0 || $stressLevel >10){
+            if ($stressLevel === null || !is_numeric($stressLevel) || $stressLevel <0 || $stressLevel >10){
                 http_response_code(400);
                 echo json_encode([
                     'status' => 'error',
