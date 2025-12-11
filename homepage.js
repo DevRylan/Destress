@@ -34,6 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const username = urlParams.get('username');
   const userId = urlParams.get('userId');
 
+  const userNameElement = document.getElementById('userName');
+  if(username && userNameElement){
+    userNameElement.textContent = username;
+  }
+
   if(username){
     document.getElementById('userName').textContent = username;
     if(userNameElement){
