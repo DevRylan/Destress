@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', function(e) {
             e.preventDefault();  
    
-   menuButton.addEventListener('click', () => {
-    navBar.classList.toggle('show');        
+   menuButton.addEventListener('click', (e) => {
+    e.stopPropagation();           
+    navBar.classList.toggle('show');
+});   
 
             const tool = this.getAttribute('data-tool');
             const videos = {
@@ -45,4 +47,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
