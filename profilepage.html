@@ -1,30 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
 <head>
     <meta charset="UTF-8">
     <title>Profile Page</title>
     <meta name="author" content="Chidera Chuka"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profilepage.css">
-
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("editForm");
-    if (form) {
-        form.addEventListener("submit", e => e.preventDefault());
-    }
-});
-</script>
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
         <div id="button_nav">
             <button id="menuButton">
-                <img src="images/menu icon.png" alt="menu button"> 
+                <img src="images\menu icon.png" alt="menu button"> 
                 
             </button>
 
@@ -38,26 +27,21 @@
         </div>
 
 
-        <!-- Logo -->
-        <div id="logoWrapper">
-            <img id="headerLogo" src="LogoDestress.png" alt="logo">
-        </div>
+        <!-- TOP RIGHT LOGO -->
+        <img id="headerLogo" src="LogoDestress.png" alt="logo">
 
     </header>
 
-    <!-- Main page -->
+    <!-- MAIN PAGE WRAPPER -->
     <main id="profile_layout">
 
-        <!-- Left profile -->
+        <!-- LEFT PROFILE CARD -->
         <section class="profile_card">
-            <h2 class="profile-header">
-                Your Profile
-                <img src="images/pen.png" class="edit-icon" alt="profile-edit">
-            </h2>
+            <h2>Your Profile</h2>
 
 
             <div class="profile_img">
-                <img src="images/profileicon.jpeg" alt="profileicon">
+                <img src="images\profileicon.jpeg" alt="profileicon">
             </div>
 
             <p class="profile-name"><strong>Frank C. Colins</strong></p>
@@ -66,7 +50,7 @@
             <p class="profile-stress_levels"><strong>Average Stress Levels:</strong> 5/10</p>
         </section>
 
-        <!-- Right stress chart -->
+        <!-- RIGHT STRESS LEVELS CHART -->
         <section class="chart_section">
             <h2>Recent Stress Levels</h2>
 
@@ -75,7 +59,7 @@
             </div>
         </section>
 
-        <!-- Below settings -->
+        <!-- BOTTOM SETTINGS -->
         <section class="settings_section">
             <h2>Settings</h2>
 
@@ -116,80 +100,10 @@
                 </label>
             </div>
         </section>
-
-        <!-- Profile edit popup -->
-        <div id="editModal" class="modal hidden">
-            <div class="modal-content">
-                <h2>Edit Profile</h2>
-
-                <form id="editForm">
-
-                    <label>Name:</label>
-                    <input type="text" id="editName" name="name">
-
-                    <label>Age:</label>
-                    <input type="number" id="editAge" name="age" min="1">
-
-                    <label>Gender:</label>
-                    <select id="editGender" name="gender">
-                        <option value="M">M</option>
-                        <option value="F">F</option>
-                    </select>
-
-                    <label>Average Stress Level (1–10):</label>
-                    <input type="number" id="editStress" name="stress_level" min="1" max="10">
-
-                    <button type="submit">Save</button>
-                    <button type="button" id="closeModal">Cancel</button>
-                </form>
-            </div>
-        </div>
-
-
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="profilepage.js" defer></script>
-
-<script>
-document.getElementById("editForm").addEventListener("submit", async function (e) {
-    e.preventDefault(); // stop page redirects
-
-    const formData = new FormData(this);
-
-    const res = await fetch("update_profile.php", {
-        method: "POST",
-        body: formData
-    });
-
-    const json = await res.json();
-
-    if (json.success) {
-        // Close modal
-        document.getElementById("editModal").classList.add("hidden");
-
-        // Update fields in the profile card
-        document.querySelector(".profile-name").innerHTML = "<strong>" + formData.get("name") + "</strong>";
-        document.querySelector(".profile-age").innerHTML = "<strong>Age:</strong> " + formData.get("age");
-        document.querySelector(".profile-gender").innerHTML = "<strong>Gender:</strong> " + formData.get("gender");
-        document.querySelector(".profile-stress_levels").innerHTML =
-            "<strong>Average Stress Levels:</strong> " + formData.get("stress_level") + "/10";
-    } else {
-        alert("Error: " + json.error);
-    }
-});
-
-// open modal
-document.querySelector(".edit-icon").onclick = () => {
-    document.getElementById("editModal").classList.remove("hidden");
-};
-
-// close modal
-document.getElementById("closeModal").onclick = () => {
-    document.getElementById("editModal").classList.add("hidden");
-};
-</script>
-
+    <script src="profilepage.js"></script>
 
 </body>
 </html>

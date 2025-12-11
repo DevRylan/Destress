@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Edit User</title>
+</head>
+<body>
+
+<h2>Edit User</h2>
+
+<form id="editForm">
+    <input type="hidden" name="id" id="uid">
+    <label>Username</label>
+    <input type="text" name="username" id="username" required>
+    <br>
+    <label>Email</label>
+    <input type="email" name="email" id="email" required>
+    <br><br>
+    <button type="submit">Save</button>
+</form>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+document.getElementById("uid").value = id;
+
+//Strucutres the query to get a single user and changes the values in the html accordingly
+async function load() {
+    const res = await fetch("getSingleUser.php?id=" + id);
+    const u = await res.json();
+    if (!u.username) return;
+    document.getElementById("username").value = u.username;
+    document.getElementById("email").value = u.email;
+}
+
+//adds a doc listener to the editForm id and waits to submit
+document.getElementById("editForm").addEventListener("submit", async e => {
+    //prevents submission and fetches formdata to the updateUser.php file
+    e.preventDefault();
+    await fetch("updateUser.php", {
+        method: "POST",
+        body: new FormData(e.target)
+    });
+    window.location.href = "dashboard.html";
+});
+
+load();
+</script>
+
+</body>
+</html>

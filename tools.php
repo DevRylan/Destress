@@ -16,10 +16,9 @@ try {
     $action = $_GET['action'] ?? 'default';
 
     if ($action === 'log_visit') {
-        $stmt = $db->prepare("INSERT INTO StressLevels (userId, stress_level) 
-                              VALUES (?, ?);
-        $stmt->execute([$userId, (int)$stressLevel
-            ]);
+        $stmt = $db->prepare("INSERT INTO stress_reports (user_id, stress_level, notes, created_at) 
+                              VALUES (?, ?, ?, datetime('now'))");
+        $stmt->execute([$userId, 3, 'User visited Stress Management Tools page']);
 
         echo json_encode([
             "status" => "success",
