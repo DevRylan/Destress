@@ -29,13 +29,34 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* read username from URL query*/
+  /* read username and userId from URL query*/
   const urlParams = new URLSearchParams(window.location.search);
   const username = urlParams.get('username');
+  const userId = urlParams.get('userId');
 
   if(username){
     document.getElementById('userName').textContent = username;
+    if(userNameElement){
+      userNameElement.textContent = username;
+    }
   }
+
+  //profile button: pass userId to profile page
+  const profileBtn = document.getElementById('profileBtn');
+  if(profileBtn) {
+    profileBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      if(userId){
+        window.location.href = `profile.html?userId=${encodeURIComponent(userId)}`
+      } else {
+        alert('User ID not found.');
+      }
+  });
+}
+
+
+  
 
   /*Modal Functions*/
   function openModal() {
@@ -83,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
             stress_level: stressLevel 
           })
         });
+        
 
         const result = await response.json();
         
