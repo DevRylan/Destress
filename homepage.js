@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
   /* read username and userId from URL query*/
   const urlParams = new URLSearchParams(window.location.search);
   const username = urlParams.get('username');
-  const userId = urlParams.get('userId');
 
   const userNameElement = document.getElementById('userName');
   if(username && userNameElement){
@@ -52,10 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
     profileBtn.addEventListener('click', function(event) {
       event.preventDefault();
 
-      if(userId){
-        window.location.href = `profile.html?userId=${encodeURIComponent(userId)}`
+      if(username){
+        window.location.href = `profile.html?username=${encodeURIComponent(username)}`
       } else {
-        alert('User ID not found.');
+        alert('Username not found.');
       }
   });
 }
