@@ -46,7 +46,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         echo json_encode([//sends error message
             "status"=>"error",
-            "message"=>"pls try again"
+            "message"=>$er
         ]);
         exit;
     }
@@ -60,4 +60,5 @@ exit;
 ?>
 <?php
 ?>
+
 
