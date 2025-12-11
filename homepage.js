@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const stressRange = document.getElementById('stressLevel');
   const stressValueDisplay = document.getElementById('stressValue');
 
+  // Store chart data from the server
+  let stressHistory = [];
 
   /*Navigation Menu*/
   menuButton.addEventListener('click', () => {
@@ -27,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* read URL query parameters*/
+  /* read username from URL query*/
   const urlParams = new URLSearchParams(window.location.search);
   const username = urlParams.get('username');
 
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ 
-            stressLevel: stressLevel 
+            stress_level: stressLevel 
           })
         });
 
@@ -86,10 +88,12 @@ document.addEventListener("DOMContentLoaded", function () {
         
         console.log('Save response:', result);
 
-        if(result.ok){
+        if(result.status === "ok"){
           alert('Emotion logged successfully');
           closeModal();
           emotionForm.reset();
+
+          //reset stress level display
           if(stressRange && stressValueDisplay){
             stressRange.value = 5;
             stressValueDisplay.textContent = '5';
@@ -162,9 +166,22 @@ function renderStressChart(){
   fetch('homepage.php?action=get_stress_history')
     .then(response => response.json())
     .then(data => {
-      console.log('Chart load error:', data);
-      renderStressChart(data);
+      console.log('Chart date:', data);
+      
+      //if no data history, show message to log a stress level
+      if((!Array.isArray(data) || data.length === 0)){
+        const container = document.querySelector('.chart-container');
+        if(container){
+          container.innerHTML = '<p>No stress history yet, please log your first entry.</p>';
+        }
+        return;
+      }
+      
+      //store fetched data and render chart
+      stressHistory = data;
+      renderStressChart();
     })
+    
     .catch(error => {
       console.error('Error fetching stress history:', error);
       alert('Error loading stress history chart data.');
