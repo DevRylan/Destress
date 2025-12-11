@@ -30,7 +30,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         errorBox.style.display = "block";
         //delays the redirect then sends  user to homepage
         setTimeout(() => {
-            window.location.href = "homepage.php?username="+encodeURIComponent(theResult.username);
+            window.location.href = "homepage.html?username="+encodeURIComponent(theResult.username);
         }, 167);
     }
 });
+
