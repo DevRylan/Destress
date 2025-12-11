@@ -1,6 +1,18 @@
-
 <?php
 session_start();
+
+$action = $_GET['action'] ?? '';
+//If no action is specified, redirect to homepage.html with query string preserved
+if($action === ''){
+    $queryString = $_SERVER['QUERY_STRING'] ?? '';
+    $target = 'homepage.html';
+    if(!empty ($queryString)){
+        $target .= '?' . $queryString;
+    }
+    header('Location: ' . $target);
+    exit;
+}
+
 header('Content-Type: application/json');
 
 //make sure user is logged in and is not admin.
